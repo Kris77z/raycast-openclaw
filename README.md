@@ -1,11 +1,11 @@
-# OpenClaw for Raycast
+# OpenClaw Channels for Raycast
 
 Chat with your local [OpenClaw](https://github.com/openclaw/openclaw) AI assistant directly from Raycast.
 
 ## Features
 
 - **Chat with OpenClaw** - Persistent conversations with history
-- **Gateway Status** - Connectivity and runtime checks for active profile
+- **Gateway Status** - Multi-instance connectivity checks in one view
 - **Open Webchat** - Jump to Web UI with the current profile/session
 
 ## Requirements
@@ -53,8 +53,8 @@ When you first run a command, Raycast will prompt for your API Endpoint and Toke
 
 **Use when:** Raycast and OpenClaw are on the same computer.
 
-| Setting | Value |
-|---------|-------|
+| Setting      | Value                    |
+| ------------ | ------------------------ |
 | API Endpoint | `http://127.0.0.1:18789` |
 
 This is the default - no configuration changes needed on OpenClaw.
@@ -65,13 +65,14 @@ This is the default - no configuration changes needed on OpenClaw.
 
 **Use when:** OpenClaw runs on another computer on your home/office network.
 
-| Setting | Value |
-|---------|-------|
+| Setting      | Value                                |
+| ------------ | ------------------------------------ |
 | API Endpoint | `http://<openclaw-machine-ip>:18789` |
 
 **Setup required on the OpenClaw machine:**
 
 1. Find the machine's local IP:
+
    ```bash
    ipconfig getifaddr en0   # WiFi
    # or
@@ -79,6 +80,7 @@ This is the default - no configuration changes needed on OpenClaw.
    ```
 
 2. Edit `~/.openclaw/openclaw.json` and change the gateway bind setting:
+
    ```json
    {
      "gateway": {
@@ -92,6 +94,7 @@ This is the default - no configuration changes needed on OpenClaw.
 4. Use the local IP as your endpoint, e.g., `http://192.168.1.50:18789`
 
 > **⚠️ Security Warning:** Binding to `0.0.0.0` exposes the gateway to your entire local network. Risks include:
+>
 > - Anyone on the same WiFi can attempt connections
 > - Public WiFi = public exposure
 > - If port forwarding is enabled on your router, it could be internet-accessible
@@ -104,8 +107,8 @@ This is the default - no configuration changes needed on OpenClaw.
 
 **Use when:** You want secure access from anywhere - home, office, mobile, etc.
 
-| Setting | Value |
-|---------|-------|
+| Setting      | Value                                     |
+| ------------ | ----------------------------------------- |
 | API Endpoint | `https://<machine-name>.<tailnet>.ts.net` |
 
 **Setup required on the OpenClaw machine:**
@@ -113,19 +116,23 @@ This is the default - no configuration changes needed on OpenClaw.
 1. Install [Tailscale](https://tailscale.com) on both machines and sign in to the same account.
 
 2. On the OpenClaw machine, set up Tailscale serve:
+
    ```bash
    tailscale serve --bg 18789
    ```
 
 3. Get your serve URL:
+
    ```bash
    tailscale serve status
    ```
+
    Output: `https://machine-name.tailca3a37.ts.net`
 
 4. Use that URL as your API Endpoint.
 
 **Benefits:**
+
 - Encrypted connection (HTTPS)
 - Works from anywhere (coffee shop, mobile hotspot, etc.)
 - Only accessible to devices on your Tailscale network
@@ -135,16 +142,18 @@ This is the default - no configuration changes needed on OpenClaw.
 
 #### Connection Method Comparison
 
-| Method | Security | Works Remotely | Setup Complexity | Recommended |
-|--------|----------|----------------|------------------|-------------|
-| Local | High (localhost only) | No | None | ✅ Yes |
-| Local Network | ⚠️ Low (LAN exposure) | No | Low | Only on trusted networks |
-| Tailscale | High (encrypted, private) | Yes | Medium | ✅ Yes - best for remote |
+| Method        | Security                  | Works Remotely | Setup Complexity | Recommended              |
+| ------------- | ------------------------- | -------------- | ---------------- | ------------------------ |
+| Local         | High (localhost only)     | No             | None             | ✅ Yes                   |
+| Local Network | ⚠️ Low (LAN exposure)     | No             | Low              | Only on trusted networks |
+| Tailscale     | High (encrypted, private) | Yes            | Medium           | ✅ Yes - best for remote |
 
 ## Commands
 
 ### Chat with OpenClaw
+
 Full conversation interface with:
+
 - Persistent chat history
 - Profile-aware contexts
 - Multiple context types (`main`, `dm`, `group`, `channel`, `topic`)
@@ -154,23 +163,29 @@ Full conversation interface with:
 - Clone a context to another profile (same context key schema, different instance)
 
 ### Gateway Status
+
 Checks active profile endpoint and reports connection health/latency.
 
 ### Open Webchat
+
 Opens the configured Web UI for the active profile.
 
 ## Troubleshooting
 
 ### "API error: 405 - Method Not Allowed"
+
 The HTTP API endpoint isn't enabled. Add the config shown in Setup step 1.
 
 ### "Failed to connect"
+
 Make sure OpenClaw gateway is running:
+
 ```bash
 openclaw gateway status
 ```
 
 ### Token errors
+
 Verify your token matches `gateway.auth.token` in your OpenClaw config.
 
 ## Acknowledgments

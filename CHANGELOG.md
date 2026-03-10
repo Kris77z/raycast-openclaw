@@ -1,10 +1,9 @@
-# OpenClaw Changelog
+# OpenClaw Channels Changelog
 
-## [Initial Release] - 2026-02-23
+## [Current Build] - 2026-03-10
 
-- Added "Ask OpenClaw" command for quick Q&A
-- Added "Chat with OpenClaw" command with persistent conversations
-- Added "Ask About Clipboard" command for clipboard analysis
-- Added "Process Selected Text" command with 10 text actions
-- Streaming response support
-- Local conversation history storage
+- Chat-first command set (`Chat`, `Gateway Status`, `Open Webchat`)
+- Channel/context model aligned with OpenClaw session key semantics
+- Multi-profile management and in-chat profile switching
+- Multi-instance gateway status overview in a single command
+- Profile-safe UX defaults (`agentId/mainKey` fixed to `main/main`)

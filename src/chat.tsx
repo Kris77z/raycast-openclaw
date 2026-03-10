@@ -820,11 +820,7 @@ function ConversationView(props: {
             icon={Icon.Message}
             title="Start this channel"
             subtitle="Type above and press Enter"
-            detail={
-              <List.Item.Detail
-                markdown="No messages yet."
-              />
-            }
+            detail={<List.Item.Detail markdown="No messages yet." />}
           />
         ) : (
           mergedMessages.map((message, index) => (

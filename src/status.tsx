@@ -1,4 +1,11 @@
-import { Action, ActionPanel, Icon, List, showToast, Toast } from "@raycast/api";
+import {
+  Action,
+  ActionPanel,
+  Icon,
+  List,
+  showToast,
+  Toast,
+} from "@raycast/api";
 import { useEffect, useMemo, useState } from "react";
 import {
   type GatewayProfile,
@@ -86,7 +93,10 @@ async function checkGatewayStatus(
   return status;
 }
 
-function buildErrorStatus(profile: GatewayProfile, error: unknown): GatewayStatus {
+function buildErrorStatus(
+  profile: GatewayProfile,
+  error: unknown,
+): GatewayStatus {
   return {
     healthy: false,
     profileId: profile.id,
@@ -145,9 +155,7 @@ export default function Command() {
         }),
       );
 
-      setStatuses(
-        Object.fromEntries(rows.map((row) => [row.profileId, row])),
-      );
+      setStatuses(Object.fromEntries(rows.map((row) => [row.profileId, row])));
 
       const failed = rows.filter((row) => !row.healthy).length;
       if (failed > 0) {
@@ -207,7 +215,9 @@ export default function Command() {
           icon={Icon.BarChart}
           title={`${healthyCount}/${profiles.length || 0} reachable`}
           subtitle={
-            activeProfileId ? `Active profile: ${activeProfileId}` : "No active profile"
+            activeProfileId
+              ? `Active profile: ${activeProfileId}`
+              : "No active profile"
           }
           actions={
             <ActionPanel>

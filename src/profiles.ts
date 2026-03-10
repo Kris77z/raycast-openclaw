@@ -101,7 +101,9 @@ function normalizeLegacyDefaultName(profile: GatewayProfile): GatewayProfile {
   };
 }
 
-function pruneLegacyDefaultProfile(profiles: GatewayProfile[]): GatewayProfile[] {
+function pruneLegacyDefaultProfile(
+  profiles: GatewayProfile[],
+): GatewayProfile[] {
   if (profiles.length <= 1) {
     return profiles.map((profile) => normalizeLegacyDefaultName(profile));
   }

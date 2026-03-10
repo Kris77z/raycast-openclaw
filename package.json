@@ -1,13 +1,10 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "openclaw",
-  "title": "OpenClaw",
-  "description": "Chat with your local OpenClaw AI assistant",
+  "name": "openclaw-channels",
+  "title": "OpenClaw Channels",
+  "description": "Channel-first chat for your OpenClaw gateway",
   "icon": "icon.png",
   "author": "Kris77z",
-  "contributors": [
-    "Kris77z"
-  ],
   "categories": [
     "Productivity",
     "Developer Tools"
