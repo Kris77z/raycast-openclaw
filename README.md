@@ -43,6 +43,8 @@ Your token is in `~/.openclaw/openclaw.json` under `gateway.auth.token`:
 cat ~/.openclaw/openclaw.json | grep -A 2 '"auth"' | grep token
 ```
 
+This extension connects to the OpenClaw gateway. Use the gateway token here, not an upstream model provider key.
+
 ### 3. Choose Your Connection Method
 
 When you first run a command, Raycast will prompt for your API Endpoint and Token. The endpoint depends on where OpenClaw is running relative to Raycast:
@@ -150,40 +152,6 @@ Full conversation interface with:
 - Reset current context with `/new`
 - Profile manager in Chat (`Create / Edit / Delete / Test / Switch`)
 - Clone a context to another profile (same context key schema, different instance)
-
-### Multi-Instance Profiles
-You can keep single-instance preferences (`endpoint`, `token`, `agentId`) or set `profilesJson` for multiple instances.
-
-Example `profilesJson`:
-
-```json
-[
-  {
-    "id": "solo",
-    "name": "Solo",
-    "endpoint": "http://127.0.0.1:18789",
-    "token": "token-solo",
-    "agentId": "main",
-    "mainKey": "main",
-    "webUiBaseUrl": "http://127.0.0.1:18789"
-  },
-  {
-    "id": "vibe-os",
-    "name": "Vibe-OS",
-    "endpoint": "http://127.0.0.1:19898",
-    "token": "token-vibe",
-    "agentId": "main",
-    "mainKey": "main",
-    "webUiBaseUrl": "http://127.0.0.1:19898"
-  }
-]
-```
-
-When `profilesJson` is set:
-- `defaultProfileId` controls first fallback profile.
-- Active profile selection is stored locally and reused across commands.
-- Profiles are now managed in-command as well (stored in Raycast LocalStorage), so you can iterate without editing JSON every time.
-- In Chat -> Manage Profiles, `agentId` and `mainKey` are fixed to `main` to avoid misconfiguration during daily use.
 
 ### Gateway Status
 Checks active profile endpoint and reports connection health/latency.
