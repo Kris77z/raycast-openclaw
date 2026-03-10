@@ -844,10 +844,7 @@ function ConversationView(props: {
               }
               actions={
                 <ActionPanel>
-                  <Action
-                    title="Send Message"
-                    onAction={() => void send()}
-                  />
+                  <Action title="Send Message" onAction={() => void send()} />
                   <Action
                     title="Send Message (Cmd+Enter)"
                     onAction={() => void send()}
