@@ -768,7 +768,12 @@ function ConversationView(props: {
             title="Send Message"
             icon={Icon.Message}
             onAction={() => void send()}
-            shortcut={{ modifiers: [], key: "return" }}
+          />
+          <Action
+            title="Send Message (Cmd+Enter)"
+            icon={Icon.Message}
+            onAction={() => void send()}
+            shortcut={{ modifiers: ["cmd"], key: "return" }}
           />
           <Action
             title="Start New Round"
@@ -842,7 +847,11 @@ function ConversationView(props: {
                   <Action
                     title="Send Message"
                     onAction={() => void send()}
-                    shortcut={{ modifiers: [], key: "return" }}
+                  />
+                  <Action
+                    title="Send Message (Cmd+Enter)"
+                    onAction={() => void send()}
+                    shortcut={{ modifiers: ["cmd"], key: "return" }}
                   />
                   <Action.CopyToClipboard
                     title="Copy Message"
